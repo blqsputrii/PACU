@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $adminRole = Role::create(['nama_role' => 'Admin']);
-        $salesRole = Role::create(['nama_role' => 'Sales']);
+        $salesRole = Role::create(['nama_role' => 'Pegawai']);
 
         User::create([
             'idrole' => $adminRole->idrole,
@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'idrole' => $salesRole->idrole,
-            'nama' => 'Sales_PACU',
-            'email' => 'sales@gmail.com',
+            'nama' => 'Pegawai_PACU',
+            'email' => 'pegawai@gmail.com',
             'password' => Hash::make('password123'),
         ]);
 
