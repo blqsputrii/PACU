@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title', Dashboard)
+@section('title', 'Dashboard')
 
 @section('content')
 <h1 class="auth-title">Hi, {{  auth()->user()->user_name }}</h1>
