@@ -2,8 +2,8 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<h1 class="auth-title">Hi, {{  auth()->user()->user_name }}</h1>
-<p class="auth-subtitle">Login sebagai {{ ucfirst(auth()->user()->role->role_name) }}</p>
+<h1 class="auth-title">Hi, {{  auth()->user()->nama }}</h1>
+<p class="auth-subtitle">Login sebagai {{ ucfirst(auth()->user()->role->nama_role) }}</p>
 
 <form method="POST" action="{{ route('logout') }}">
     @csrf
