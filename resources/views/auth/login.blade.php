@@ -1,38 +1,40 @@
-@extends('layouts.auth')
-@section('title', 'Login')
+@extends('layouts.guest')
+
+@section('title', 'Log In')
+@section('subtitle', "You're almost done!")
 
 @section('content')
-<h1 class="auth-title">Hi, there!</h1>
-<p class="auth-subtitle">Welcome back!</p>
-
-@if (session('status'))
-<div class="alert-success">{{  session('status') }}</div>
-@endif
-
-<form method="POST" action="{{ route('login.store') }}" novalidate>
+<form method="POST" action="{{ route('login.store') }}">
     @csrf
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" value="{{ old('email') }}" required autofocus>
+
+    <div class="mb-3">
+        <label for="email" class="form-label fw-medium small">Email</label>
+        <input type="email" id="email" name="email" value="{{ old('email') }}"
+            placeholder="Enter your email"
+            class="form-control pacu-input @error('email') is-invalid @enderror" required>
         @error('email')
-            <p class="error">{{ $message }}</p>
+            <div class="invalid-feedback ps-3">{{ $message }}</div>
         @enderror
     </div>
 
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+    <div class="mb-4">
+        <label for="password" class="form-label fw-medium small">Password</label>
+        <input type="password" id="password" name="password"
+            placeholder="Enter your password"
+            class="form-control pacu-input @error('password') is-invalid @enderror" required>
         @error('password')
-            <p class="error">{{ $message }}</p>
+            <div class="invalid-feedback ps-3">{{ $message }}</div>
         @enderror
     </div>
 
-    <div class="actions center">
-        <button type="submit" class="btn">Log In</button>
+    <div class="d-grid col-8 mx-auto mb-3">
+        <button type="submit" class="btn btn-pacu shadow-sm">Log In</button>
     </div>
 
-    <div class="switch-text" style="text-align:center; margin-top:16px;">
-        <a href="{{  route('register') }}>I don't have an account</a>
+    <div class="text-center">
+        <a href="{{ route('register') }}" class="text-decoration-none text-muted small">
+            Don't have an account? <span class="fw-semibold text-pacu text-decoration-underline">Sign Up</span>
+        </a>
     </div>
 </form>
 @endsection
