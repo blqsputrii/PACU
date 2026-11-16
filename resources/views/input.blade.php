@@ -3,15 +3,15 @@
 @section('title', 'Input Pegawai')
 @section('content')
 
-<div class="w-100 my-auto py-3">
-    <h3 class="text-center fw-bold text-warning mb-4">
-        Input Your Proggress Here!
-    </h3>
+<div class="w-100 pt-5 px-3">
+    <h2 class="text-center fw-bold text-warning" style="margin-bottom: 130px;">
+        Input Your <br> Proggress Here!
+    </h2>
 
     <form action="{{ route('input.pegawai.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="row mb-3">
+        <div class="row mb-4">
             <div class="col-md-4">
                 <label class="form-label text-dark small fw-bold">Tanggal</label>
                 <input type="date" name="tanggal" class="form-control rounded-pill border-secondary-subtle px-3" required>
@@ -29,7 +29,7 @@
         </div>
 
 
-        <div class="row mb-3">
+        <div class="row mb-4">
           <div class="col-md-4">
                 <label class="form-label text-dark small fw-bold">Nama Agen</label>
                 <input type="text" name="nama_agen" class="form-control rounded-pill border-secondary-subtle px-3" placeholder="Name" required>
@@ -44,20 +44,26 @@
             </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-3">
             <label class="form-label text-dark small fw-bold d-block">Poin</label>
-            <div class="d-flex gap-3 flex-wrap">
-                <div class="form-check border border-secondary-subtle rounded-pill px-4 py-2 d-flex align-items-center gap-2 bg-white">
-                    <input class="form-check-input m-0" type="checkbox" name="agen_merespon" value="1" id="merespon">
-                    <label class="form-check-label small mb-0 text-dark" for="merespon">Agen Merespon</label>
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <div class="form-check border border-secondary-subtle rounded-pill px-4 py-2 d-flex align-items-center gap-2 bg-white">
+                        <input class="form-check-input m-0" type="checkbox" name="agen_merespon" value="1" id="merespon">
+                        <label class="form-check-label small mb-0 text-dark" for="merespon">Agen Merespon</label>
+                    </div>
                 </div>
-                <div class="form-check border border-secondary-subtle rounded-pill px-4 py-2 d-flex align-items-center gap-2 bg-white">
-                    <input class="form-check-input m-0" type="checkbox" name="agen_survey" value="1" id="survey">
-                    <label class="form-check-label small mb-0 text-dark" for="survey">Agen Survey</label>
+                <div class="col-md-4 mb-2">
+                    <div class="form-check border border-secondary-subtle rounded-pill px-4 py-2 d-flex align-items-center gap-2 bg-white">
+                        <input class="form-check-input m-0" type="checkbox" name="agen_survey" value="1" id="survey">
+                        <label class="form-check-label small mb-0 text-dark" for="survey">Agen Survey</label>
+                    </div>
                 </div>
-                <div class="form-check border border-secondary-subtle rounded-pill px-4 py-2 d-flex align-items-center gap-2 bg-white">
-                    <input class="form-check-input m-0" type="checkbox" name="agen_deal" value="1" id="deal">
-                    <label class="form-check-label small mb-0 text-dark" for="deal">Agen Deal</label>
+                <div class="col-md-4 mb-2">
+                    <div class="form-check border border-secondary-subtle rounded-pill px-4 py-2 d-flex align-items-center gap-2 bg-white">
+                        <input class="form-check-input m-0" type="checkbox" name="agen_deal" value="1" id="deal">
+                        <label class="form-check-label small mb-0 text-dark" for="deal">Agen Deal</label>
+                    </div>
                 </div>
             </div>
         </div>

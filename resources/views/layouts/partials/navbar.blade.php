@@ -17,12 +17,21 @@
                             Verifikasi
                         </a>
                     </li>
+
+                @else
+                    @if(request()->is('input*'))
+                        <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link text-white fw-semibold" {{ request()->is('input') ? 'text-decoration-underline' : '' }}">
+                            Leaderboard
+                        </a>
+                    </li>
                 @else
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white fw-semibold {{ request()->is('progress*') ? 'text-decoration-underline' : '' }}">
+                        <a href="{{ route('input') }}" class="nav-link text-white fw-semibold" {{ request()->is('input') ? 'text-decoration-underline' : '' }}">
                             Input
                         </a>
                     </li>
+                @endif
                     <li class="nav-item">
                         <a href="{{ route('history.index') }}" class="nav-link text-white fw-semibold {{ request()->is('history*') ? 'text-decoration-underline' : '' }}">
                             History
