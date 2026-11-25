@@ -2,28 +2,23 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\ProgresController;
-use App\Models\ProgressAgen;
+use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\VerifikasiController;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/login');
+Route::get('/', [LeaderboardController::class, 'index'])->name('beranda');
 
 Route::middleware('guest')->group(function () {
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'Register'])->name('register.store');
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.store');
-});
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.store'); });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-});
-Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+Route::middleware(['auth', 'role'])->group(function () {
+Route::get('/dashboard', [LeaderboardController::class, 'index'])->name('dashboard');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/input', [ProgresController::class, 'create'])->name('input');
-    Route::post('/input', [ProgresController::class, 'store'])->name('input.pegawai.store');
-});
+Route::middleware(['auth', 'role:2'])->group(function () {
+Route::get('/history', [HistoryController::class, 'index'])->name('history.index'); });

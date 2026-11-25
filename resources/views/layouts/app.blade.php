@@ -47,7 +47,6 @@
                 </div>
             @endif
 
-        <div class="pacu-main-card flex-grow-1 d-flex flex-column justify-content-between pt-4 px-3 px-md-5">
             @yield('content')
 
         </div>
