@@ -2,26 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class MonthlyLeaderboard extends Model
 {
-    use HasFactory;
-
     protected $table = 'monthly_leaderboard';
-    protected $primaryKey = 'idleaderboard';
+    protected $primaryKey = 'id_leaderboard';
 
     protected $fillable = [
-        'iduser',
         'bulan',
         'tahun',
         'total_poin',
         'peringkat',
+        'id_user',
     ];
 
-    public function user()
+    public function pegawai()
     {
-        return $this->belongsTo(User::class, 'iduser', 'iduser');
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 }

@@ -2,30 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PointsLedger extends Model
 {
-     use HasFactory;
-
     protected $table = 'points_ledger';
-    protected $primaryKey = 'idledger';
+    protected $primaryKey = 'id_poin';
 
     protected $fillable = [
-        'iduser',
-        'idrule',
-        'poin',
+        'poin_diperoleh',
         'keterangan',
+        'waktu_diperoleh',
+        'id_user',
+        'id_prospek',
     ];
 
-    public function user()
+    protected function casts(): array
     {
-        return $this->belongsTo(User::class, 'iduser', 'iduser');
+        return ['waktu_diperoleh' => 'datetime'];
     }
 
-    public function rule()
+    public function pegawai()
     {
-        return $this->belongsTo(PointRule::class, 'idrule', 'idrule');
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
+    }
+
+    public function prospek()
+    {
+        return $this->belongsTo(Prospect::class, 'id_prospek', 'id_prospek');
     }
 }

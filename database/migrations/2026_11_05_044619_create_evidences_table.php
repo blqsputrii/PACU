@@ -6,14 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('evidences', function (Blueprint $table) {
-            $table->id('idevidence');
-            $table->foreignId('idactivity')->constrained('prospect_activities', 'idactivity')->onDelete('cascade');
-            $table->string('file_path');
-            $table->string('tipe_file', 100)->nullable();
+            $table->id('id_bukti');
+            $table->string('nama_file');
+            $table->string('path_file');
+            $table->foreignId('id_prospek')->unique()->constrained('prospect', 'id_prospek')->cascadeOnDelete();
             $table->timestamps();
         });
     }

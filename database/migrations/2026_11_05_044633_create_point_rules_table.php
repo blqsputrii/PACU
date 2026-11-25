@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('point_rules', function (Blueprint $table) {
-            $table->id('idrule');
-            $table->string('nama_aturan', 100);
-            $table->integer('jumlah_poin');
-            $table->text('deskripsi')->nullable();
+            $table->id('id_aturan');
+            $table->string('kunci_aktivitas', 50);
+            $table->string('label_aktivitas', 100);
+            $table->integer('nilai_poin');
+            $table->foreignId('id_kategori')->nullable()->constrained('property_categories', 'id_kategori');
             $table->timestamps();
         });
     }

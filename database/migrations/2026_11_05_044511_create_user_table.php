@@ -6,21 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->id('iduser');
-            $table->foreignId('idrole')->constrained('role', 'idrole')->onDelete('cascade');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id('id_user');
             $table->string('nama', 100);
             $table->string('email', 100)->unique();
             $table->string('password');
+            $table->boolean('status_aktif')->default(true);
+            $table->foreignId('id_role')->constrained('roles', 'id_role');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 };

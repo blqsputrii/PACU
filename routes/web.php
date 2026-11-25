@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\ProgresController;
-use App\Models\ProgressAgen;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -22,8 +20,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/input', [ProgresController::class, 'create'])->name('input');
-    Route::post('/input', [ProgresController::class, 'store'])->name('input.pegawai.store');
-});
