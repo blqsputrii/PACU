@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('prospect', function (Blueprint $table) {
-            $table->id('idprospect');
-            $table->foreignId('iduser')->constrained('user', 'iduser')->onDelete('cascade');
-            $table->foreignId('idcategory')->constrained('property_categories', 'idcategory')->onDelete('cascade');
-            $table->string('nama_prospek', 100);
-            $table->string('nomor_telepon', 20);
-            $table->text('alamat')->nullable();
-            $table->string('status', 50)->default('Pending');
+            $table->id('id_prospek');
+            $table->date('tanggal_prospek');
+            $table->string('domisili', 100);
+            $table->string('nama_agen', 100);
+            $table->string('no_telp_agen', 20);
+            $table->string('no_telp_kantor', 20);
+            $table->foreignId('id_user')->constrained('users', 'id_user');
+            $table->foreignId('id_kategori')->constrained('property_categories', 'id_kategori');
             $table->timestamps();
         });
     }

@@ -6,21 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
-        Schema::create('point_ledger', function (Blueprint $table) {
-            $table->id('idledger');
-            $table->foreignId('iduser')->constrained('user', 'iduser')->onDelete('cascade');
-            $table->foreignId('idrule')->nullable()->constrained('point_rules', 'idrule')->onDelete('set null');
-            $table->integer('poin');
+        Schema::create('points_ledger', function (Blueprint $table) {
+            $table->id('id_poin');
+            $table->integer('poin_diperoleh');
             $table->string('keterangan')->nullable();
+            $table->timestamp('waktu_diperoleh')->useCurrent();
+            $table->foreignId('id_user')->constrained('users', 'id_user');
+            $table->foreignId('id_prospek')->nullable()->unique()->constrained('prospect', 'id_prospek');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('point_ledger');
+        Schema::dropIfExists('points_ledger');
     }
 };

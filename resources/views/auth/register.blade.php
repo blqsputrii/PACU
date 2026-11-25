@@ -45,17 +45,16 @@
     </div>
 
     <div class="mb-2">
-        <label for="idrole" class="form-label fw-medium small">Role</label>
-        <select id="idrole" name="idrole"
-            class="form-select pacu-input @error('idrole') is-invalid @enderror" required>
-            <option value="" disabled selected>Select your role</option>
-            @foreach ($roles as $role)
-                <option value="{{ $role->idrole }}" {{ old('idrole') == $role->idrole ? 'selected' : '' }}>
-                    {{ ucfirst($role->nama_role ?? $role->role_name) }}
+        <label for="id_role" class="form-label fw-medium small">Role</label>
+        <select id="id_role" name="id_role"
+            class="form-select pacu-input @error('id_role') is-invalid @enderror" required>
+                        @foreach ($roles as $role)
+                <option value="{{ $role->id_role }}" {{ old('id_role') == $role->id_role ? 'selected' : '' }}>
+                    {{ $role->nama_role }}
                 </option>
             @endforeach
         </select>
-        @error('idrole')
+        @error('id_role')
             <div class="invalid-feedback ps-3">{{ $message }}</div>
         @enderror
     </div>

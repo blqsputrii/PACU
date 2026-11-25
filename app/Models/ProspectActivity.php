@@ -2,41 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProspectActivity extends Model
 {
-    use HasFactory;
-
     protected $table = 'prospect_activities';
-    protected $primaryKey = 'idactivity';
+    protected $primaryKey = 'id_aktivitas';
 
     protected $fillable = [
-        'idprospect',
-        'iduser',
-        'jenis_aktivitas',
-        'catatan',
-        'tanggal_aktivitas',
+        'is_merespon',
+        'is_survey',
+        'is_deal',
+        'poin_sementara',
+        'id_prospek',
     ];
 
-    public function prospect()
+    protected function casts(): array
     {
-        return $this->belongsTo(Prospect::class, 'idprospect', 'idprospect');
+        return [
+            'is_merespon' => 'boolean',
+            'is_survey' => 'boolean',
+            'is_deal' => 'boolean',
+        ];
     }
 
-    public function user()
+    public function prospek()
     {
-        return $this->belongsTo(User::class, 'iduser', 'iduser');
-    }
-
-    public function evidences()
-    {
-        return $this->hasMany(Evidence::class, 'idactivity', 'idactivity');
-    }
-
-    public function verifications()
-    {
-        return $this->hasMany(Verification::class, 'idactivity', 'idactivity');
+        return $this->belongsTo(Prospect::class, 'id_prospek', 'id_prospek');
     }
 }
