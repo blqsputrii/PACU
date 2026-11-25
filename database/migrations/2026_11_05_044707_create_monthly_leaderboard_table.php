@@ -6,16 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('monthly_leaderboard', function (Blueprint $table) {
-            $table->id('idleaderboard');
-            $table->foreignId('iduser')->constrained('user', 'iduser')->onDelete('cascade');
-            $table->integer('bulan');
-            $table->integer('tahun');
+            $table->id('id_leaderboard');
+            $table->unsignedTinyInteger('bulan');
+            $table->unsignedSmallInteger('tahun');
             $table->integer('total_poin')->default(0);
-            $table->integer('peringkat')->nullable();
+            $table->unsignedInteger('peringkat')->nullable();
+            $table->foreignId('id_user')->constrained('users', 'id_user');
+            $table->unique(['id_user', 'bulan', 'tahun']);
             $table->timestamps();
         });
     }

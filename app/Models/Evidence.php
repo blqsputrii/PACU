@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Evidence extends Model
 {
-    use HasFactory;
-
     protected $table = 'evidences';
-    protected $primaryKey = 'idevidence';
+    protected $primaryKey = 'id_bukti';
 
     protected $fillable = [
-        'idactivity',
-        'file_path',
-        'tipe_file',
+        'nama_file',
+        'path_file',
+        'id_prospek',
     ];
 
-    public function activity()
+    public function prospek()
     {
-        return $this->belongsTo(ProspectActivity::class, 'idactivity', 'idactivity');
+        return $this->belongsTo(Prospect::class, 'id_prospek', 'id_prospek');
     }
 }

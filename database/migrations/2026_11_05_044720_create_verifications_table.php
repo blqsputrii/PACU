@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('verifications', function (Blueprint $table) {
-            $table->id('idverification');
-            $table->foreignId('idactivity')->constrained('prospect_activities', 'idactivity')->onDelete('cascade');
-            $table->foreignId('iduser')->constrained('user', 'iduser')->onDelete('cascade');
-            $table->string('status_verifikasi', 50);
-            $table->text('catatan_verifikasi')->nullable();
+            $table->id('id_verifikasi');
+            $table->string('status', 20)->default('Pending');
+            $table->text('catatan')->nullable();
+            $table->timestamp('waktu_verifikasi')->nullable();
+            $table->foreignId('id_prospek')->unique()->constrained('prospect', 'id_prospek')->cascadeOnDelete();
+            $table->foreignId('id_user')->nullable()->constrained('users', 'id_user');
             $table->timestamps();
         });
     }

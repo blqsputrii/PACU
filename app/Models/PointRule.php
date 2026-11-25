@@ -2,24 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PointRule extends Model
 {
-    use HasFactory;
-
     protected $table = 'point_rules';
-    protected $primaryKey = 'idrule';
+    protected $primaryKey = 'id_aturan';
 
     protected $fillable = [
-        'nama_aturan',
-        'jumlah_poin',
-        'deskripsi',
+        'kunci_aktivitas',
+        'label_aktivitas',
+        'nilai_poin',
+        'id_kategori',
     ];
 
-    public function ledgers()
+    public function kategori()
     {
-        return $this->hasMany(PointsLedger::class, 'idrule', 'idrule');
+        return $this->belongsTo(PropertyCategory::class, 'id_kategori', 'id_kategori');
     }
 }

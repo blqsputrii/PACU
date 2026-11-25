@@ -6,11 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
-        Schema::create('role', function (Blueprint $table) {
-            $table->id('idrole');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id('id_role');
             $table->string('nama_role', 50);
             $table->timestamps();
         });
@@ -18,6 +17,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('role');
+        Schema::dropIfExists('roles');
     }
 };

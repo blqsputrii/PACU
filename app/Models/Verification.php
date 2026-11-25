@@ -2,30 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Verification extends Model
 {
-    use HasFactory;
-
     protected $table = 'verifications';
-    protected $primaryKey = 'idverification';
+    protected $primaryKey = 'id_verifikasi';
 
     protected $fillable = [
-        'idactivity',
-        'iduser',
-        'status_verifikasi',
-        'catatan_verifikasi',
+        'status',
+        'catatan',
+        'waktu_verifikasi',
+        'id_prospek',
+        'id_user',
     ];
 
-    public function activity()
+    protected function casts(): array
     {
-        return $this->belongsTo(ProspectActivity::class, 'idactivity', 'idactivity');
+        return ['waktu_verifikasi' => 'datetime'];
     }
 
-    public function validator()
+    public function prospek()
     {
-        return $this->belongsTo(User::class, 'iduser', 'iduser');
+        return $this->belongsTo(Prospect::class, 'id_prospek', 'id_prospek');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 }
